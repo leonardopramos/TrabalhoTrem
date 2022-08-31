@@ -75,4 +75,10 @@ public class Trem {
         }
         return false;
     }
+    
+    @Override
+    public String toString() {
+        return "Trem [id=" + id + ", locomotivas=" + locomotivas + ", vagoes=" + vagoes + "]";
+    }
+    
 }
