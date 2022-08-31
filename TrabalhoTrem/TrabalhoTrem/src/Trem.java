@@ -6,10 +6,12 @@ public class Trem {
     private ArrayList<Locomotiva> locomotivas;
     private ArrayList<Vagao> vagoes;
 
-    public Trem (int id){
+    public Trem (int id, Locomotiva locomotiva){
         this.id = id;
+
         locomotivas = new ArrayList<>();
         vagoes = new ArrayList<>();
+        locomotivas.add(locomotiva);
     }
 
     public int getId(){
@@ -29,7 +31,7 @@ public class Trem {
         return null;
     }
 
-    public int getQntVagoes(){
+    public int getQntVageoes(){
         return vagoes.size();
     }
 
@@ -42,38 +44,75 @@ public class Trem {
         return null;
     }
 
+    public int calculaNumeroMaxVagoes(){
+        double max = 0;
+        double fator = 1.0;
+        for(Locomotiva loc : locomotivas){
+            
+            max += loc.getNroMaxVagoes()*fator;
+            fator = fator*0.9;
+        }
+
+        return (int) max;
+    }
+
+    public double pesoVagoes(){
+        double peso = 0.0;
+        for (Vagao vag : vagoes ){
+            peso += vag.getCapacMax();
+        }
+        return peso;
+    } 
+
+    public double calculaPesoMax(){
+        double max = 0.0;
+        double aux = 1.0;
+        for (Locomotiva loc : locomotivas){
+            max += loc.getPesoMax();
+            aux = aux*0.9;
+        }
+        return max;
+    }
+
     public boolean engataLocomotiva(Locomotiva locomotiva){
         if(vagoes.size() >= 1){
             return false;
         }
         locomotivas.add(locomotiva);
+        locomotiva.setTrem(this);
         return true;
     }
 
     public boolean engataVagao(Vagao vagao){
-        if(locomotivas.size() == 0){
+        if(locomotivas.size() == calculaNumeroMaxVagoes()){
+            return false;
+        }
+
+        if(pesoVagoes() >= calculaPesoMax()){
             return false;
         }
         vagoes.add(vagao);
+        vagao.setTrem(this);
         return true;
     }
 
-    public boolean desengataLocomotiva(){
-        if(locomotivas.size() >= 1 && vagoes.size() == 0){
-            int index = locomotivas.size()-1;
-            locomotivas.remove(index);
-            return true;
+    public Locomotiva desengataLocomotiva(){
+        if(locomotivas.size() <= 0){
+            return null;
         }
-        return false;
+        Locomotiva aux = locomotivas.remove(locomotivas.size()-1);
+        aux.setTrem(null);
+        return aux;
     }
 
-    public boolean desengataVagao(){
-        if(locomotivas.size() >= 1 && vagoes.size() >= 1){
-            int index = vagoes.size()-1;
-            vagoes.remove(index);
-            return true;
+    public Vagao desengataVagao(){
+        if(vagoes.size() <= 0){
+            
+            return null;
         }
-        return false;
+        Vagao aux = vagoes.remove(vagoes.size()-1);
+        aux.setTrem(null);
+        return aux;
     }
     
     @Override
