@@ -1,9 +1,27 @@
 import java.util.Scanner;
 public class App {
+
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
+        GaragemLocomotivas garagemLocomotiva = new GaragemLocomotivas();
+        PatioTrens patio = new PatioTrens();
+        Locomotiva um = new Locomotiva(1);
+        Locomotiva dois = new Locomotiva(2);
+        Locomotiva tres = new Locomotiva(3);
+        Locomotiva quatro = new Locomotiva(4);
+        Locomotiva cinco = new Locomotiva(5);
+        Locomotiva seis = new Locomotiva(6);
 
-        while(true){
+        garagemLocomotiva.locomotivaEntra(um);
+        garagemLocomotiva.locomotivaEntra(dois);
+        garagemLocomotiva.locomotivaEntra(tres);
+        garagemLocomotiva.locomotivaEntra(quatro);
+        garagemLocomotiva.locomotivaEntra(cinco);
+        garagemLocomotiva.locomotivaEntra(seis);
+
+        boolean verificador = true;
+
+        while(verificador){
             System.out.println("Bem-vindo ao sistemas de trem!");
             System.out.println("1. Criar trem");
             System.out.println("2. Editar trem");
@@ -12,18 +30,31 @@ public class App {
             System.out.println("5. Sair");
             System.out.print("Por favor, selecione a opção desejada:");
             int opcao = sc.nextInt();
-           switch(opcao){
 
-            case 1: 
+            switch(opcao){
+
+            case 1:
+                System.out.println("Escolha uma das locomotivas abaixo para engatar no Trem: ");
+                System.out.println(garagemLocomotiva.toString());
                 System.out.println("Digite um identificador para o  trem: ");
                 int identificadorTrem = sc.nextInt();
+
+                if(patio.verificaTrem(identificadorTrem) == true){
+                    System.out.println("Já existe um trem com esse identificador!!\n");
+                    continue;
+                }
+
                 System.out.println("Digite um identificador para a  locomotiva: ");
                 int identificadorLocomotiva = sc.nextInt();
                 
-                //Fazer método que puxe a locomotiva de sua classe e adicione em um trem.
 
-                //Esta operação exige que se indique o identificador do trem e a primeira locomotiva.
-                // A primeira locomotiva nunca pode ser removida. Para liberar esta locomotiva é necessário desfazer o trem.
+                Locomotiva aux = garagemLocomotiva.procurLocomotiva(identificadorLocomotiva);
+                patio.tremEntra(criaTrem(identificadorLocomotiva, aux));
+
+                System.out.println(criaTrem(identificadorTrem, aux));
+                System.out.println(patio.toString());
+
+                
                 continue;
             case 2:
                 //Inicialmente deve-se indicar o identificador do trem a ser editado. A partir de então ficam liberadas as seguintes operações:
@@ -43,7 +74,15 @@ public class App {
 
                     switch(opcao1){
                         case 1: 
-                        //· Inserir uma locomotiva (informar identificador) respeitando restrições
+                            System.out.println("Patio:\n" + patio.toString());
+                            System.out.println("Escolha um dos Trens estacionados no patio: ");
+                            int idTrem = sc.nextInt();
+                            System.out.println("Garagem das Locomotivas:\n" + garagemLocomotiva.toString());
+                            System.out.println("Escolha uma das locomotivas: ");
+                            int idLoc = sc.nextInt();
+
+                            patio.procuraTrem(idTrem).engataLocomotiva(patio.procuraTrem(idTrem), garagemLocomotiva.procurLocomotiva(idLoc));
+                            
                         continue;
 
                         case 2:
@@ -70,7 +109,7 @@ public class App {
                 }
 
             case 3:
-                //Listar todas os trens já criados (todos os trens que estão no pátio)
+                System.out.println(patio.toString());
                 continue;
             
             case 4:
@@ -89,4 +128,12 @@ public class App {
    
         }
     }
+
+    
+    public static Trem criaTrem(int id, Locomotiva locomotiva){
+        
+        Trem trem = new Trem(id, locomotiva);
+        return trem;
+    }
+    
 }

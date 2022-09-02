@@ -20,4 +20,31 @@ public class PatioTrens {
         }
         return null;
     }
+
+    public boolean verificaTrem(int id){
+        for(Trem t : trens){
+            if(t.getId() == id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Trem procuraTrem(int idTrem){
+        for (Trem t : trens) {
+            if(t.getId() == idTrem){
+                return t;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        String aux = "Patio dos Trens\nEstacionados: " + trens.size() + "\n";
+        for(Trem t : trens){
+            aux += t.toString()+"\n";
+        }
+        return aux;
+    }
 }

@@ -1,13 +1,13 @@
 public class Locomotiva{
     private int id;
-    private double pesoMax;
-    private int nroMaxVagoes;
+    private double pesoMax = 6000;
+    //6000t
+    private int nroMaxVagoes = 50;
+    //50 vagoes
     private Trem trem;
     
-    public Locomotiva(int id, double pesoMax, int nroMaxVagoes) {
+    public Locomotiva(int id) {
         this.id = id;
-        this.pesoMax = pesoMax;
-        this.nroMaxVagoes = nroMaxVagoes;
         this.trem = null;
     }
 

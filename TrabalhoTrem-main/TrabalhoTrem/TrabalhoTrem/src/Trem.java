@@ -11,7 +11,9 @@ public class Trem {
 
         locomotivas = new ArrayList<>();
         vagoes = new ArrayList<>();
+        // locomotiva.setTrem(this);
         locomotivas.add(locomotiva);
+
     }
 
     public int getId(){
@@ -74,12 +76,12 @@ public class Trem {
         return max;
     }
 
-    public boolean engataLocomotiva(Locomotiva locomotiva){
+    public boolean engataLocomotiva(Trem tre, Locomotiva locomotiva){
         if(vagoes.size() >= 1){
             return false;
         }
         locomotivas.add(locomotiva);
-        locomotiva.setTrem(this);
+        locomotiva.setTrem(tre);
         return true;
     }
 
@@ -92,7 +94,7 @@ public class Trem {
             return false;
         }
         vagoes.add(vagao);
-        vagao.setTrem(this);
+        // vagao.setTrem(this);
         return true;
     }
 

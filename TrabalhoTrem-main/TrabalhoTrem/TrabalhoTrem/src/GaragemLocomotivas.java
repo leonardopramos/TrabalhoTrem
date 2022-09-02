@@ -20,4 +20,22 @@ public class GaragemLocomotivas {
         }
         return null;
     }
+
+    public Locomotiva procurLocomotiva(int id){
+        for(int i = 0; i < locomotivas.size(); i ++){
+            if(locomotivas.get(i).getId() == id){
+                return locomotivas.get(i);
+            }
+        }
+        return null;
+    }
+    
+    @Override
+    public String toString() {
+        String aux = "Garagem de Locomotivas\nEstacionadas: "+locomotivas.size()+"\n";
+        for(Locomotiva l : locomotivas){
+            aux += l.toString()+"\n";
+        }
+        return aux;
+    }
 }

@@ -20,4 +20,13 @@ public class GaragemVagoes {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        String aux = "Garagem de Vagoes\nEstacionados: "+vagoes.size()+"\n";
+        for(Vagao v : vagoes){
+            aux += v.toString()+"\n";
+        }
+        return aux;
+    }
 }
