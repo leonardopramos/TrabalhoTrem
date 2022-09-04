@@ -76,12 +76,12 @@ public class Trem {
         return max;
     }
 
-    public boolean engataLocomotiva(Trem tre, Locomotiva locomotiva){
+    public boolean engataLocomotiva(Locomotiva locomotiva){
         if(vagoes.size() >= 1){
             return false;
         }
         locomotivas.add(locomotiva);
-        locomotiva.setTrem(tre);
+        // locomotiva.setTrem(tre);
         return true;
     }
 

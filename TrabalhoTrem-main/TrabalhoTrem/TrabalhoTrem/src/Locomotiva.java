@@ -33,7 +33,12 @@ public class Locomotiva{
 
     @Override
     public String toString() {
-        return "Locomotiva [id=" + id + ", nroMaxVagoes=" + nroMaxVagoes + ", pesoMax=" + pesoMax + ", trem=" + trem
-                + "]";
+        if(trem==null){
+            return "Locomotiva [id=" + id + ", nroMaxVagoes=" + nroMaxVagoes + ", pesoMax=" + pesoMax + ", trem=" + trem
+            + "]";
+        }
+        return "Locomotiva [id=" + id + ", nroMaxVagoes=" + nroMaxVagoes + ", pesoMax=" + pesoMax + ", trem id=" + trem.getId()
+        + "]";
+       
     }
 }

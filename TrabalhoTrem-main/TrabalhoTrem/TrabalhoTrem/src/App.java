@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class App2 {
+public class App {
 
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
@@ -57,7 +57,6 @@ public class App2 {
           
           garagemLocomotiva.procurLocomotiva(identificadorLocomotiva).setTrem(auxT1);
           garagemLocomotiva.locomotivaSai(identificadorLocomotiva);
-          // System.out.println(auxT1.toString());
           System.out.println(patio.toString());
 
           continue;
