@@ -29,7 +29,8 @@ public class App2 {
       System.out.println("3. Listar trens");
       System.out.println("4. Desfazer trem");
       System.out.println("5. Sair");
-      System.out.print("Por favor, selecione a opção desejada:");
+      System.out.println("Por favor, selecione a opção desejada: ");
+
       int opcao = sc.nextInt();
 
       switch (opcao) {
@@ -53,8 +54,10 @@ public class App2 {
           Trem auxT1 = criaTrem(identificadorTrem, auxL1);
           patio.tremEntra(auxT1);
 
+          
           garagemLocomotiva.procurLocomotiva(identificadorLocomotiva).setTrem(auxT1);
-          System.out.println(auxT1.toString());
+          garagemLocomotiva.locomotivaSai(identificadorLocomotiva);
+          // System.out.println(auxT1.toString());
           System.out.println(patio.toString());
 
           continue;
